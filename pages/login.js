@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import Layout from '../layout/layout';
 import Link from 'next/link';
-import styles from '../styles/Form.module.css';
 import { HiAtSymbol, HiFingerPrint } from "react-icons/hi";
 import { useState } from 'react';
 import { signIn, singOut } from "next-auth/react";
 import { useFormik} from "formik";
 import login_validate from '../lib/validate';
 import { useRouter } from 'next/router';
+import NavBar from '../components/NavBar';
  
 export default function Login(){   
 
@@ -50,6 +50,7 @@ export default function Login(){
         <Head>
             <title>Login</title>
         </Head>
+        <NavBar></NavBar>
         
         <section className='w-3/4 mx-auto flex flex-col gap-10'>
             <div className="title">
@@ -59,12 +60,12 @@ export default function Login(){
             </div>
             {/* form */}
             <form className='flex flex-col gap-5' onSubmit={formik.handleSubmit}>
-                <div className={styles.input_group}>
+                <div className="">
                     <input 
                     type="email"
                     name='email'
                     placeholder='Email'
-                    className={styles.input_text}
+                    className=""
                     {...formik.getFieldProps('email')}
                     />
                     <span className='icon flex items-center px-4'>
@@ -72,12 +73,12 @@ export default function Login(){
                     </span>
                 </div>                
                 {formik.errors.email && formik.touched.email ? <span className='text-red-500'>{formik.errors.email}</span> : <></>}
-                <div className={styles.input_group}>
+                <div className="">
                     <input 
                     type={`${show ? "text" : "password"}`}
                     name='password'
                     placeholder='password'
-                    className={styles.input_text}
+                    className=""
                     {...formik.getFieldProps('password')}
                     />
                      <span className='icon flex items-center px-4' onClick={() => setShow(!show)}>
@@ -88,7 +89,7 @@ export default function Login(){
 
                 {/* login buttons */}
                 <div className="input-button">
-                    <button type='submit' className={styles.button}>
+                    <button type='submit' className="">
                         Login
                     </button>
                 </div>                

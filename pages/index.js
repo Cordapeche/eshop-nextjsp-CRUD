@@ -3,6 +3,11 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import pic from '../public/images/plant.jpg';
+import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+import { getSession, useSession, signOut } from "next-auth/react"
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function Home() {
 
@@ -35,13 +40,13 @@ export default function Home() {
         <title>Home Page</title>
       </Head>
 
-      {session ? User({ session, handleSignOut }) : Guest()}
+      {Guest(articles)}
     </div>
   )
 }
-
+//{session ? User({ session, handleSignOut }) : Guest(articles)}
 // Guest
-function Guest() {
+function Guest(articles) {
   return (
 
     <>
@@ -50,6 +55,8 @@ function Guest() {
         <meta name="keywords" content="nextjs" />
       </Head>
       <div>
+        <NavBar>          
+        </NavBar>
         <div className='container-lg'>
           <h1 className='grand-title'>Recently updated</h1>
           <div className='row'>
@@ -79,6 +86,7 @@ function Guest() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </>
 
 
@@ -117,19 +125,19 @@ function User({ session, handleSignOut }) {
 }
 
 
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req })
+// export async function getServerSideProps({ req }) {
+//   const session = await getSession({ req })
 
-  // if(!session){
-  //   return {
-  //     redirect : {
-  //       destination: '/login',
-  //       permanent: false
-  //     }
-  //   }
-  // }
+//   // if(!session){
+//   //   return {
+//   //     redirect : {
+//   //       destination: '/login',
+//   //       permanent: false
+//   //     }
+//   //   }
+//   // }
 
-  return {
-    props: { session }
-  }
-}
+//   return {
+//     props: { session }
+//   }
+// }

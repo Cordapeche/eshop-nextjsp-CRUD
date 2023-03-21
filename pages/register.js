@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Layout from '../layout/layout';
 import Link from 'next/link';
-import styles from '../styles/Form.module.css';
 import { HiAtSymbol, HiFingerPrint, HiOutlineUser } from "react-icons/hi";
 import { useState } from 'react';
 import { useFormik } from "formik";
 import { registerValidate } from '../lib/validate';
 import { useRouter } from 'next/router';
+import NavBar from '../components/NavBar';
 
 export default function Register() {
 
@@ -53,6 +53,7 @@ export default function Register() {
             <Head>
                 <title>Register</title>
             </Head>
+            <NavBar></NavBar>
 
             <section className='w-3/4 mx-auto flex flex-col gap-10'>
                 <div className="title">
@@ -64,12 +65,12 @@ export default function Register() {
 
                 {/* form */}
                 <form className='flex flex-col gap-5' onSubmit={formik.handleSubmit}>
-                    <div className={styles.input_group}>
+                    <div className="">
                         <input
                             type="text"
                             name='Username'
                             placeholder='Username'
-                            className={styles.input_text}
+                            className=""
                             {...formik.getFieldProps('username')}
                         />
                         <span className='icon flex items-center px-4'>
@@ -77,12 +78,12 @@ export default function Register() {
                         </span>
                     </div>
                     {formik.errors.username && formik.touched.username ? <span className='text-red-500'>{formik.errors.username}</span> : <></>}
-                    <div className={styles.input_group}>
+                    <div className="">
                         <input
                             type="email"
                             name='email'
                             placeholder='Email'
-                            className={styles.input_text}
+                            className=""
                             {...formik.getFieldProps('email')}
                         />
                         <span className='icon flex items-center px-4'>
@@ -90,12 +91,12 @@ export default function Register() {
                         </span>
                     </div>
                     {formik.errors.email && formik.touched.email ? <span className='text-red-500'>{formik.errors.email}</span> : <></>}
-                    <div className={styles.input_group}>
+                    <div className="">
                         <input
                             type={`${show.password ? "text" : "password"}`}
                             name='password'
                             placeholder='password'
-                            className={styles.input_text}
+                            className=""
                             {...formik.getFieldProps('password')}
                         />
                         <span className='icon flex items-center px-4' onClick={() => setShow({ ...show, password: !show.password })}>
@@ -104,12 +105,12 @@ export default function Register() {
                     </div>
                     {formik.errors.password && formik.touched.password ? <span className='text-red-500'>{formik.errors.password}</span> : <></>}
 
-                    <div className={styles.input_group}>
+                    <div className="">
                         <input
                             type={`${show.cpassword ? "text" : "password"}`}
                             name='cpassword'
                             placeholder='Confirm Password'
-                            className={styles.input_text}
+                            className=""
                             {...formik.getFieldProps('cpassword')}
                         />
                         <span className='icon flex items-center px-4' onClick={() => setShow({ ...show, cpassword: !show.cpassword })}>
@@ -120,7 +121,7 @@ export default function Register() {
 
                     {/* login buttons */}
                     <div className="input-button">
-                        <button type='submit' className={styles.button}>
+                        <button type='submit' className="">
                             Register
                         </button>
                     </div>
